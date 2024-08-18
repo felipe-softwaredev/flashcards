@@ -1,9 +1,11 @@
+'use client';
+
 import { SignUp } from '@clerk/nextjs';
 
-export default function SignUpHome() {
+export default function SignUpPage() {
   return (
     <div className="grid place-items-center h-screen bg-black">
-      <SignUp signInUrl="/" forceRedirectUrl="/dashboard" />;
+      <SignUp signInUrl="/sign-in" forceRedirectUrl="/dashboard" />
     </div>
   );
 }
