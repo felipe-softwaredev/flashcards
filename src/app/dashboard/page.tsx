@@ -26,7 +26,7 @@ export default function Dashboard() {
         const q = query(
           flashcardsSetRef,
           where('front', '==', user.id),
-          orderBy('timestamp', 'desc')
+          orderBy('date')
         );
         console.log("Query created:", q);
         const querySnapshot = await getDocs(q);
@@ -39,7 +39,7 @@ export default function Dashboard() {
               userId: data.userId,
               front: data.front,
               back: data.back,
-              timestamp: data.timestamp.toDate(),
+              timestamp: data.date.toDate(),
             };
           }
         );
