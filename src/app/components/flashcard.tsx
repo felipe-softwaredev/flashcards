@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { addDoc } from 'firebase/firestore';
 import flashcardsSetRef from '@/firebase/firebase';
 import { useUser } from '@clerk/nextjs';
+import { usePathname } from 'next/navigation';
 
 type FlashcardProps = {
   flashcard: {
@@ -16,6 +17,8 @@ export default function Flashcard({ flashcard }: FlashcardProps) {
   const { user } = useUser();
   const [flipped, setFlipped] = useState(false);
   const [added, setAdded] = useState<boolean>(false);
+
+  const path = usePathname();
 
   const flashcardData = {
     userId: user?.id,
@@ -52,7 +55,7 @@ export default function Flashcard({ flashcard }: FlashcardProps) {
           </div>
         </div>
       </div>
-      <button
+      {path === '/dashboard/generate' && (<button
         type="button"
         className={`mt-4 px-4 py-2 rounded transition-colors duration-300 ${
           added
@@ -63,7 +66,7 @@ export default function Flashcard({ flashcard }: FlashcardProps) {
         disabled={added}
       >
         {added ? 'Added' : 'Add to Flashcard Set'}
-      </button>
+      </button> )}
     </div>
   );
 }
