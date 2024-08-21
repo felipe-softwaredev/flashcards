@@ -25,7 +25,7 @@ export default function Dashboard() {
         console.log("Fetching flashcards for user:", user.id);
         const q = query(
           flashcardsSetRef,
-          where('front', '==', user.id),
+          where('userId', '==', user.id),
           orderBy('date')
         );
         console.log("Query created:", q);
